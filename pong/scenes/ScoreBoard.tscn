@@ -1,0 +1,35 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://resources/fonts/score.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Scenes/ScoreBoard.gd" type="Script" id=2]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+script = ExtResource( 2 )
+
+[node name="ScoreContainer" type="HBoxContainer" parent="."]
+margin_top = 20.0
+margin_right = 858.0
+margin_bottom = 100.0
+size_flags_vertical = 0
+custom_constants/separation = 100
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Left" type="Label" parent="ScoreContainer"]
+margin_left = 329.0
+margin_right = 379.0
+margin_bottom = 80.0
+rect_min_size = Vector2( 50, 80 )
+size_flags_horizontal = 10
+custom_fonts/font = ExtResource( 1 )
+text = "0"
+
+[node name="Right" type="Label" parent="ScoreContainer"]
+margin_left = 479.0
+margin_right = 529.0
+margin_bottom = 80.0
+rect_min_size = Vector2( 50, 80 )
+size_flags_horizontal = 2
+custom_fonts/font = ExtResource( 1 )
+text = "0"

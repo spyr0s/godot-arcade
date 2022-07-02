@@ -1,0 +1,18 @@
+[gd_scene format=2]
+
+[node name="Stripe" type="VBoxContainer"]
+margin_right = 3.0
+margin_bottom = 17.5
+rect_min_size = Vector2( 3, 17.5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="White" type="ColorRect" parent="."]
+margin_right = 3.0
+margin_bottom = 10.0
+rect_min_size = Vector2( 3, 10 )
+color = Color( 1, 1, 1, 0.607843 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
