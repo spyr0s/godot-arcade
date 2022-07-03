@@ -103,10 +103,10 @@ enabled_focus_mode = 0
 text = "Play Again"
 
 [node name="LeftPlayer" parent="." instance=ExtResource( 3 )]
-position = Vector2( 39, 240 )
+position = Vector2( 200, 240 )
 
 [node name="RightPlayer" parent="." instance=ExtResource( 3 )]
-position = Vector2( 810, 240 )
+position = Vector2( 658, 240 )
 up_movement = "right_player_up"
 down_movement = "right_player_down"
 
@@ -130,51 +130,61 @@ position = Vector2( 434, -11 )
 shape = SubResource( 1 )
 
 [node name="LeftGoal" type="Area2D" parent="Walls"]
-position = Vector2( 20, 262 )
+position = Vector2( 150, 262 )
 collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/LeftGoal"]
-position = Vector2( -9.3125, 0 )
 shape = SubResource( 3 )
 
 [node name="RightGoal" type="Area2D" parent="Walls"]
-position = Vector2( 839, 262 )
+position = Vector2( 708, 262 )
 collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/RightGoal"]
-position = Vector2( 7, 0 )
 shape = SubResource( 3 )
 
 [node name="TopLeftPlayerWall" type="StaticBody2D" parent="Walls"]
-position = Vector2( 50, 10 )
+position = Vector2( 200, 10 )
 collision_layer = 2
 collision_mask = 4
+__meta__ = {
+"_editor_description_": "Stop left player from reaching the top of the screen"
+}
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/TopLeftPlayerWall"]
 shape = SubResource( 2 )
 
 [node name="BottomLeftPlayerWall" type="StaticBody2D" parent="Walls"]
-position = Vector2( 50, 515 )
+position = Vector2( 200, 515 )
 collision_layer = 2
 collision_mask = 4
+__meta__ = {
+"_editor_description_": "Stop left player from reaching the bottom of the screen"
+}
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/BottomLeftPlayerWall"]
 position = Vector2( 0, -2 )
 shape = SubResource( 2 )
 
 [node name="TopRightPlayerWall" type="StaticBody2D" parent="Walls"]
-position = Vector2( 808, 10 )
+position = Vector2( 658, 10 )
 collision_layer = 2
 collision_mask = 4
+__meta__ = {
+"_editor_description_": "Stop right player from reaching the top of the screen"
+}
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/TopRightPlayerWall"]
 position = Vector2( 1, 1 )
 shape = SubResource( 2 )
 
 [node name="BottomRightPlayerWall" type="StaticBody2D" parent="Walls"]
-position = Vector2( 808, 515 )
+position = Vector2( 658, 515 )
 collision_layer = 2
 collision_mask = 4
+__meta__ = {
+"_editor_description_": "Stop right player from reaching the bottom of the screen"
+}
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/BottomRightPlayerWall"]
 position = Vector2( 1, -2 )

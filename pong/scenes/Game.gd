@@ -27,6 +27,7 @@ func _on_score_changed(score:Vector2)->void:
 		ball.spawn()
 
 func _on_game_ended(winner:String)->void:
+	ball.queue_free()
 	winner_label.text = "Player %s wins" % ("1" if winner == "left" else "2")
 	end_game.show()
 
@@ -39,11 +40,14 @@ func _on_TopWall_area_entered(area: Area2D) -> void:
 func _bounce_on_wall(area: Area2D)->void:
 	if area.is_in_group("ball"):
 		area.velocity.y = -area.velocity.y
+		SoundManager.play_sound("res://assets/sounds/hit_wall.ogg")
 
 func _on_LeftGoal_area_entered(area: Area2D) -> void:
+	SoundManager.play_sound("res://assets/sounds/score.ogg")
 	EventBus.emit_signal("player_scored","right")
 
 func _on_RightGoal_area_entered(area: Area2D) -> void:
+	SoundManager.play_sound("res://assets/sounds/score.ogg")
 	EventBus.emit_signal("player_scored","left")
 
 func _on_Button_button_up() -> void:

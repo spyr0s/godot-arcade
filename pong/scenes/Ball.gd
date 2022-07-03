@@ -1,4 +1,7 @@
+class_name Ball
 extends Area2D
+
+const SIZE := 10
 
 export var speed := 300
 export var min_speed := 300
@@ -8,6 +11,7 @@ export var speed_increase := 50
 var velocity: = Vector2.ZERO
 
 func _ready() -> void:
+	spawn()
 	velocity = Vector2(-0.5 if randf() < 0.5 else 0.5,  0.5)
 
 func _physics_process(delta: float) -> void:
@@ -26,5 +30,5 @@ func bounce_paddle(pos: float)->void:
 func spawn()->void:
 	speed = min_speed
 	velocity = Vector2.ZERO
-	position = Vector2(424, 1)
+	position = Vector2(424, 50)
 	velocity = Vector2(-0.5 if randf() < 0.5 else 0.5, 0.5)
