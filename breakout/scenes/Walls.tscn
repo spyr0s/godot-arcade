@@ -1,0 +1,105 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://scenes/Walls.gd" type="Script" id=1]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 2, 189 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 2, 189.5 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 125, 6.5 )
+
+[node name="Walls" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LeftWall" type="Area2D" parent="."]
+
+[node name="Left" type="ColorRect" parent="LeftWall"]
+anchor_bottom = 1.0
+margin_right = 4.0
+margin_bottom = 379.0
+rect_min_size = Vector2( 4, 379 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftWall"]
+position = Vector2( 2, 190 )
+shape = SubResource( 1 )
+
+[node name="RightWall" type="Area2D" parent="."]
+position = Vector2( 254, 0 )
+
+[node name="Left" type="ColorRect" parent="RightWall"]
+anchor_bottom = 1.0
+margin_right = 4.0
+margin_bottom = 379.0
+rect_min_size = Vector2( 4, 379 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RightWall"]
+position = Vector2( 2, 189.5 )
+shape = SubResource( 2 )
+
+[node name="TopWall" type="Area2D" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="TopWall"]
+margin_top = 39.0
+margin_right = 258.0
+margin_bottom = 52.0
+rect_min_size = Vector2( 258, 13 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TopWall"]
+position = Vector2( 129, 45.5 )
+shape = SubResource( 3 )
+
+[node name="BottomWall" type="Area2D" parent="."]
+position = Vector2( 0, 327 )
+
+[node name="ColorRect" type="ColorRect" parent="BottomWall"]
+margin_top = 39.0
+margin_right = 258.0
+margin_bottom = 52.0
+rect_min_size = Vector2( 258, 13 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BottomWall"]
+position = Vector2( 129, 45.5 )
+shape = SubResource( 3 )
+
+[node name="LeftBlue" type="ColorRect" parent="."]
+margin_top = 344.0
+margin_right = 4.0
+margin_bottom = 357.0
+rect_min_size = Vector2( 4, 13 )
+color = Color( 0, 0.521569, 0.611765, 1 )
+
+[node name="RightBlue" type="ColorRect" parent="."]
+margin_left = 254.0
+margin_top = 344.0
+margin_right = 258.0
+margin_bottom = 357.0
+rect_min_size = Vector2( 4, 13 )
+color = Color( 0, 0.521569, 0.611765, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="area_entered" from="LeftWall" to="." method="_on_LeftWall_area_entered"]
+[connection signal="area_entered" from="RightWall" to="." method="_on_RightWall_area_entered"]
+[connection signal="area_entered" from="TopWall" to="." method="_on_TopWall_area_entered"]
+[connection signal="area_entered" from="BottomWall" to="." method="_on_BottomWall_area_entered"]

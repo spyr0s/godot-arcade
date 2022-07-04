@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://scenes/Paddle.gd" type="Script" id=1]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 9, 3 )
+
+[node name="Paddle" type="Area2D"]
+script = ExtResource( 1 )
+width = 60
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_left = -9.0
+margin_top = -3.0
+margin_right = 9.0
+margin_bottom = 3.0
+rect_min_size = Vector2( 18, 6 )
+color = Color( 0, 0.521569, 0.611765, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="area_entered" from="." to="." method="_on_Paddle_area_entered"]

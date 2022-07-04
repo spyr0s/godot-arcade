@@ -1,0 +1,50 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=4
+
+_global_script_classes=[ {
+"base": "Area2D",
+"class": "Ball",
+"language": "GDScript",
+"path": "res://scenes/Ball.gd"
+} ]
+_global_script_class_icons={
+"Ball": ""
+}
+
+[application]
+
+config/name="Breakout"
+run/main_scene="res://scenes/Game.tscn"
+boot_splash/bg_color=Color( 0, 0, 0, 1 )
+config/icon="res://icon.png"
+
+[autoload]
+
+GameManager="*res://singletons/GameManager.gd"
+EventBus="*res://singletons/EventBus.gd"
+
+[display]
+
+window/size/width=258
+window/size/height=379
+window/size/always_on_top=true
+window/size/test_width=516
+window/size/test_height=758
+window/stretch/mode="2d"
+window/stretch/aspect="keep"
+
+[physics]
+
+common/enable_pause_aware_picking=true
+
+[rendering]
+
+environment/default_clear_color=Color( 0, 0, 0, 1 )
+environment/default_environment="res://default_env.tres"
