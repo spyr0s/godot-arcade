@@ -8,6 +8,22 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "Area2D",
+"class": "Ball",
+"language": "GDScript",
+"path": "res://scenes/Ball.gd"
+}, {
+"base": "KinematicBody2D",
+"class": "Paddle",
+"language": "GDScript",
+"path": "res://scenes/Paddle.gd"
+} ]
+_global_script_class_icons={
+"Ball": "",
+"Paddle": ""
+}
+
 [application]
 
 config/name="Pong"
@@ -16,6 +32,7 @@ config/icon="res://icon.png"
 
 [autoload]
 
+GameManager="*res://singletons/GameManager.gd"
 EventBus="*res://singletons/EventBus.gd"
 SoundManager="*res://singletons/SoundManager.tscn"
 

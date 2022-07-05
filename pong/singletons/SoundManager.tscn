@@ -6,4 +6,5 @@
 script = ExtResource( 1 )
 
 [node name="Player" type="AudioStreamPlayer2D" parent="."]
+position = Vector2( 412, 1 )
 area_mask = 0

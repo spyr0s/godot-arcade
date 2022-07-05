@@ -1,26 +1,10 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://scenes/Game.gd" type="Script" id=1]
-[ext_resource path="res://Scenes/ScoreBoard.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Scenes/Paddle.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Scenes/Ball.tscn" type="PackedScene" id=4]
-[ext_resource path="res://resources/fonts/winner.tres" type="DynamicFont" id=5]
-
-[sub_resource type="StyleBoxEmpty" id=7]
-
-[sub_resource type="StyleBoxEmpty" id=4]
-
-[sub_resource type="StyleBoxEmpty" id=5]
-
-[sub_resource type="StyleBoxEmpty" id=6]
-
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 433.5, 10 )
-
-[sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 12, 261.25 )
-
-[sub_resource type="RectangleShape2D" id=2]
+[ext_resource path="res://scenes/Graphics.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/Paddle.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/Ball.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/Walls.tscn" type="PackedScene" id=5]
 
 [node name="Game" type="Node2D"]
 script = ExtResource( 1 )
@@ -28,79 +12,9 @@ __meta__ = {
 "_edit_vertical_guides_": [ 858.0 ]
 }
 
-[node name="Background" type="Control" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
-rect_min_size = Vector2( 858, 525 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="Graphics" parent="." instance=ExtResource( 2 )]
 
-[node name="Canvas" type="ColorRect" parent="Background"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-color = Color( 0, 0, 0, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="StripesContainer" type="VBoxContainer" parent="Background"]
-anchor_left = 0.5
-anchor_right = 0.5
-margin_left = -2.5
-margin_right = 0.5
-margin_bottom = 525.0
-rect_min_size = Vector2( 3, 525 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Margin" type="MarginContainer" parent="Background"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-custom_constants/margin_top = 20
-custom_constants/margin_bottom = 20
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="ScoreContainer" parent="Background/Margin" instance=ExtResource( 2 )]
-
-[node name="EndGame" type="VBoxContainer" parent="Background/Margin"]
-margin_left = 229.0
-margin_top = 162.0
-margin_right = 629.0
-margin_bottom = 362.0
-rect_min_size = Vector2( 400, 200 )
-size_flags_horizontal = 6
-size_flags_vertical = 6
-
-[node name="Winner" type="Label" parent="Background/Margin/EndGame"]
-margin_right = 400.0
-margin_bottom = 100.0
-rect_min_size = Vector2( 400, 100 )
-size_flags_horizontal = 6
-custom_fonts/font = ExtResource( 5 )
-text = "Player 1 wins"
-align = 1
-valign = 1
-
-[node name="Button" type="Button" parent="Background/Margin/EndGame"]
-margin_left = 60.0
-margin_top = 112.0
-margin_right = 340.0
-margin_bottom = 192.0
-rect_min_size = Vector2( 280, 80 )
-focus_mode = 0
-size_flags_horizontal = 6
-size_flags_vertical = 6
-custom_fonts/font = ExtResource( 5 )
-custom_styles/hover = SubResource( 7 )
-custom_styles/pressed = SubResource( 4 )
-custom_styles/focus = SubResource( 5 )
-custom_styles/normal = SubResource( 6 )
-enabled_focus_mode = 0
-text = "Play Again"
+[node name="Walls" parent="." instance=ExtResource( 5 )]
 
 [node name="LeftPlayer" parent="." instance=ExtResource( 3 )]
 position = Vector2( 200, 240 )
@@ -111,87 +25,3 @@ up_movement = "right_player_up"
 down_movement = "right_player_down"
 
 [node name="Ball" parent="." instance=ExtResource( 4 )]
-
-[node name="Walls" type="Node" parent="."]
-
-[node name="TopWall" type="Area2D" parent="Walls"]
-collision_mask = 8
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/TopWall"]
-position = Vector2( 434, -11 )
-shape = SubResource( 1 )
-
-[node name="BottomWall" type="Area2D" parent="Walls"]
-position = Vector2( 0, 545 )
-collision_mask = 9
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/BottomWall"]
-position = Vector2( 434, -11 )
-shape = SubResource( 1 )
-
-[node name="LeftGoal" type="Area2D" parent="Walls"]
-position = Vector2( 150, 262 )
-collision_mask = 8
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/LeftGoal"]
-shape = SubResource( 3 )
-
-[node name="RightGoal" type="Area2D" parent="Walls"]
-position = Vector2( 708, 262 )
-collision_mask = 8
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/RightGoal"]
-shape = SubResource( 3 )
-
-[node name="TopLeftPlayerWall" type="StaticBody2D" parent="Walls"]
-position = Vector2( 200, 10 )
-collision_layer = 2
-collision_mask = 4
-__meta__ = {
-"_editor_description_": "Stop left player from reaching the top of the screen"
-}
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/TopLeftPlayerWall"]
-shape = SubResource( 2 )
-
-[node name="BottomLeftPlayerWall" type="StaticBody2D" parent="Walls"]
-position = Vector2( 200, 515 )
-collision_layer = 2
-collision_mask = 4
-__meta__ = {
-"_editor_description_": "Stop left player from reaching the bottom of the screen"
-}
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/BottomLeftPlayerWall"]
-position = Vector2( 0, -2 )
-shape = SubResource( 2 )
-
-[node name="TopRightPlayerWall" type="StaticBody2D" parent="Walls"]
-position = Vector2( 658, 10 )
-collision_layer = 2
-collision_mask = 4
-__meta__ = {
-"_editor_description_": "Stop right player from reaching the top of the screen"
-}
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/TopRightPlayerWall"]
-position = Vector2( 1, 1 )
-shape = SubResource( 2 )
-
-[node name="BottomRightPlayerWall" type="StaticBody2D" parent="Walls"]
-position = Vector2( 658, 515 )
-collision_layer = 2
-collision_mask = 4
-__meta__ = {
-"_editor_description_": "Stop right player from reaching the bottom of the screen"
-}
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/BottomRightPlayerWall"]
-position = Vector2( 1, -2 )
-shape = SubResource( 2 )
-
-[connection signal="button_up" from="Background/Margin/EndGame/Button" to="." method="_on_Button_button_up"]
-[connection signal="area_entered" from="Walls/TopWall" to="." method="_on_TopWall_area_entered"]
-[connection signal="area_entered" from="Walls/BottomWall" to="." method="_on_BottomWall_area_entered"]
-[connection signal="area_entered" from="Walls/LeftGoal" to="." method="_on_LeftGoal_area_entered"]
-[connection signal="area_entered" from="Walls/RightGoal" to="." method="_on_RightGoal_area_entered"]

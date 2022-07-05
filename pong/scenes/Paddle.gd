@@ -1,11 +1,11 @@
-class_name Paddle
+class_name Paddle 
 extends KinematicBody2D
 
-const HEIGHT := 48
+export var paddle_height := GameManager.PADDLE_HEIGHT
 
 export(String, "left_player_up","right_player_up") var up_movement = "left_player_up"
 export(String, "left_player_down","right_player_down") var down_movement = "left_player_down"
-export var speed := 300
+export var speed := GameManager.PADDLE_SPEED
 
 var  velocity := Vector2.ZERO
 
@@ -24,7 +24,7 @@ func _physics_process(delta: float) -> void:
 func _on_Area2D_area_entered(area: Area2D) -> void:
 	if area.is_in_group("ball") :
 		# check the position where the ball hit the paddle
-		var col_pos = - (position.y - HEIGHT/2 - area.position.y - area.SIZE /2 )
+		var col_pos = - (position.y - paddle_height/2 - area.position.y - area.SIZE /2 )
 		SoundManager.play_sound("res://assets/sounds/hit.ogg")
-		area.bounce_paddle(col_pos)
+		area.bounce_paddle(global_position)
 
