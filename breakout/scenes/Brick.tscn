@@ -3,7 +3,7 @@
 [ext_resource path="res://scenes/Brick.gd" type="Script" id=1]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 8, 2 )
+extents = Vector2( 9, 3 )
 
 [node name="Brick" type="Area2D"]
 script = ExtResource( 1 )

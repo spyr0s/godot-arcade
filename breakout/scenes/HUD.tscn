@@ -1,10 +1,13 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://assets/fonts/Quinquefive-0Wonv.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://scenes/HUD.gd" type="Script" id=2]
+[ext_resource path="res://resources/fonts/score.tres" type="DynamicFont" id=3]
 
 [sub_resource type="DynamicFont" id=1]
 font_data = ExtResource( 1 )
+
+[sub_resource type="StyleBoxEmpty" id=2]
 
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource( 2 )
@@ -24,7 +27,7 @@ __meta__ = {
 margin_left = 13.0
 margin_top = 52.0
 margin_right = 250.0
-margin_bottom = 98.0
+margin_bottom = 215.0
 
 [node name="PlayerLives" type="HBoxContainer" parent="MarginContainer/Box"]
 margin_right = 237.0
@@ -62,3 +65,22 @@ margin_right = 211.0
 margin_bottom = 19.0
 custom_fonts/font = SubResource( 1 )
 text = "000"
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/Box"]
+margin_top = 46.0
+margin_right = 237.0
+margin_bottom = 96.0
+custom_constants/separation = 50
+custom_styles/separator = SubResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="MarginContainer/Box"]
+margin_top = 100.0
+margin_right = 237.0
+margin_bottom = 163.0
+custom_fonts/font = ExtResource( 3 )
+text = "PRESS MOUSE BUTTON TO START"
+align = 1
+autowrap = true
