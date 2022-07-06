@@ -11,14 +11,12 @@ func _ready() -> void:
 	EventBus.connect("game_started", self, "_on_game_started")
 
 func _on_game_ended()->void:
-	position = Vector2(GameManager.PADDLE_POSITION)
-	rect.rect_position = Vector2(GameManager.SCREEN_WIDTH, - GameManager.PADDLE_HEIGHT / 2)
-	rect.rect_min_size = Vector2(GameManager.SCREEN_WIDTH, GameManager.PADDLE_HEIGHT)
-	rect.rect_size = Vector2(GameManager.SCREEN_WIDTH, GameManager.PADDLE_HEIGHT)
-	var shape = collision.shape as RectangleShape2D
-	shape.extents = Vector2(GameManager.SCREEN_WIDTH/2, GameManager.PADDLE_HEIGHT/2)
-
+	_resize_paddle(GameManager.SCREEN_WIDTH)
+	
 func _on_game_started()->void:
+	_resize_paddle(width)
+	
+func _resize_paddle(width:float)->void :
 	position = Vector2(GameManager.PADDLE_POSITION)
 	rect.rect_position = Vector2(-width / 2, - GameManager.PADDLE_HEIGHT / 2)
 	rect.rect_min_size = Vector2(width, GameManager.PADDLE_HEIGHT)

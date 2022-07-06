@@ -1,9 +1,9 @@
 extends CanvasLayer
 
-export var max_lives := 3
+export var max_lives := GameManager.MAX_BALLS
 
 var score := 0 setget set_score
-var remaining_lives := 3 setget set_remaining_lives
+var remaining_lives := GameManager.MAX_BALLS setget set_remaining_lives
 
 onready var score_label := $MarginContainer/Box/Scores/Points
 onready var lives_label := $MarginContainer/Box/PlayerLives/Lives
@@ -17,7 +17,7 @@ func _ready() -> void:
 
 func _on_game_started()->void:
 	self.score = 0
-	self.remaining_lives = 3
+	self.remaining_lives = GameManager.MAX_BALLS
 	instructions_label.hide()
 	
 func _on_game_ended()->void:

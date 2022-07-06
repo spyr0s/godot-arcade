@@ -3,24 +3,30 @@ extends Node
 enum Status {
 	IDLE,
 	PLAYING,
-	LOST_BALL
+	LOST_BALL,
+	LEVEL_CLEARED
 }
 var bricks_hit := 0
 var current_ball_bricks_hit := 0
 var hit_orange := false
 var hit_red := false
 var status :int = Status.IDLE 
+var level := 1
+var max_levels := 2
+
+const BRICKS_COVERAGE := 100.0
 
 const SCREEN_WIDTH = 258
 const SCREEN_HEIGHT = 379
 const PADDLE_HEIGHT = 6
 const WALL_WIDTH = 4
 const TOP_MARGIN = 100
-const BALL_INIT_SPEED = 150
+const BALL_INIT_SPEED = 180
 const BALL_INCREASE_SPEED_PERC = 10
+const MAX_BALLS := 3
 
 const PADDLE_POSITION = Vector2(SCREEN_WIDTH / 2, 351)
-const BALL_INITIAL_POSITION = Vector2(129, 150)
+const BALL_INITIAL_POSITION = Vector2(129, 170)
 
 const BRICK_WIDTH = 16
 const BRICK_HEIGHT = 4
@@ -33,6 +39,7 @@ func _ready() -> void:
 	EventBus.connect("ball_missed", self, "_on_ball_missed")
 	EventBus.connect("game_resumed", self, "_on_game_resumed")
 	EventBus.connect("game_ended", self, "_on_game_ended")
+	EventBus.connect("level_cleared", self, "_on_level_cleared")
 	
 func get_brick_color(row)->Color:
 	if row < 2 :
@@ -55,6 +62,13 @@ func _on_game_resumed()->void:
 func _on_game_ended()->void:
 	status = Status.IDLE	
 	
+func _on_level_cleared()->void:
+	level += 1
+	if level <= max_levels :
+		status = Status.LEVEL_CLEARED
+	else :
+		EventBus.emit_signal("game_ended")
+		
 func _on_brick_hit(color:Color)->void:
 	bricks_hit += 1
 	current_ball_bricks_hit += 1
